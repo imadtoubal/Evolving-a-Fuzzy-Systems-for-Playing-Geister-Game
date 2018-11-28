@@ -18,10 +18,13 @@ for trial = 1:games
 
     % Define initial board state
     board = zeros(6);
+    captured = zeros(1);
+    captured_count = 1;
     turn = 0;
     playing = true;
     
     % Place ghosts
+    % Initial placement of ghosts.
     board(1:2, 2:5) = reshape(randperm(8) > 4, 2, 4)+3;
     board(5:6, 2:5) = reshape(randperm(8) > 4, 2, 4)+1;
     
@@ -106,7 +109,7 @@ for trial = 1:games
         end
         
         % Delay: to watch the game.
-        pause(1);
+%         pause(1);
 
         %% Make random move
         if mod(turn,2) == 0
@@ -134,6 +137,10 @@ for trial = 1:games
                 if row > 1
                     if (mod(turn,2) == 0 && board(row-1, col) ~= 1 && board(row-1, col) ~= 2) || ...
                        (mod(turn,2) == 1 && board(row-1, col) ~= 3 && board(row-1, col) ~= 4)  
+                        if(board(row-1, col) ~= 0) 
+                            captured(captured_count) = board(row-1, col);
+                            captured_count = captured_count + 1;
+                        end
                         board(row-1, col) = board(ind);
                         board(ind) = 0;
                         valid = true;
@@ -149,6 +156,10 @@ for trial = 1:games
                 if row < 6
                     if (mod(turn,2) == 0 && board(row+1, col) ~= 1 && board(row+1, col) ~= 2) || ...
                        (mod(turn,2) == 1 && board(row+1, col) ~= 3 && board(row+1, col) ~= 4)  
+                        if(board(row+1, col) ~= 0) 
+                            captured(captured_count) = board(row+1, col);
+                            captured_count = captured_count + 1;    
+                        end
                         board(row+1, col) = board(ind);
                         board(ind) = 0;
                         valid = true;
@@ -164,6 +175,10 @@ for trial = 1:games
                 if col > 1
                     if (mod(turn,2) == 0 && board(row, col-1) ~= 1 && board(row, col-1) ~= 2) || ...
                        (mod(turn,2) == 1 && board(row, col-1) ~= 3 && board(row, col-1) ~= 4)  
+                        if(board(row, col-1))
+                            captured(captured_count) = board(row, col-1);
+                            captured_count = captured_count + 1;
+                        end
                         board(row, col-1) = board(ind);
                         board(ind) = 0;
                         valid = true;
@@ -184,6 +199,10 @@ for trial = 1:games
                 if col < 6
                     if (mod(turn,2) == 0 && board(row, col+1) ~= 1 && board(row, col+1) ~= 2) || ...
                        (mod(turn,2) == 1 && board(row, col+1) ~= 3 && board(row, col+1) ~= 4)  
+                        if(board(row, col+1)) 
+                            captured(captured_count) = board(row, col+1);
+                            captured_count = captured_count + 1;
+                        end
                         board(row, col+1) = board(ind);
                         board(ind) = 0;
                         valid = true;
