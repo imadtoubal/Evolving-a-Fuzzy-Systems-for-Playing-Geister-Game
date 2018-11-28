@@ -1,10 +1,20 @@
 clear all;
 
+% Whether or not to draw the board
 draw = true;
 
 victoryType = zeros(1,6);
+% 1: No more self good ghosts. Opponent wins.
+% 2: No more self evil ghosts. You win!      
+% 3: No more opponent good ghosts. You win!  
+% 4: No more opponent evil ghosts. Opponent wins.            
+% 5: Self good ghost moved off the board. You win!           
+% 6: Opponent good ghost moved off the board. Opponent wins.
 
-for trial = 1:1
+% How many games to play
+games = 1;
+
+for trial = 1:games
 
     % Define initial board state
     board = zeros(6);
@@ -32,7 +42,8 @@ for trial = 1:1
     end
 
     while playing
-
+        
+        %% Drawing
         if draw
 
             % Clear board
@@ -70,7 +81,7 @@ for trial = 1:1
             end
             drawnow;
         end
-
+        %% End of drawing
         % Check for victory
         if isempty(find(board==1, 1))
             disp('No more self good ghosts. Opponent wins.');
@@ -93,20 +104,28 @@ for trial = 1:1
         if ~playing
             break;
         end
-
+        
+        % Delay: to watch the game.
         pause(1);
 
         %% Make random move
         if mod(turn,2) == 0
+            % player 1
             inds = find(board==1 | board==2);
         else
+            % player 2
             inds = find(board==3 | board==4);
         end
         valid = false;
-        while ~valid
-            % stuff go here 
+        % Only if an action was taken (i.e. a player makes a valid move),
+        % the variable valid changes to true. Else, we pick another ghost
+        % and another move. Repeat until valid is true.
+        while ~valid 
             
-            % get ind, and dir 
+            % inds: list of all current player pieces indeces
+            % ind: the index of the player's piece to move next
+            % dir: the direction in which the piece moves 
+            % 1: up, 2: down, 3: left, 4: right
             ind = inds(randi(length(inds)));
             [row, col] = ind2sub(size(board), ind);
             dir = randi(4);

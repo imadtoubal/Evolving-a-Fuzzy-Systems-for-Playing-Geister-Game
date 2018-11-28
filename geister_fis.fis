@@ -1,0 +1,161 @@
+[System]
+Name='geister_fis'
+Type='mamdani'
+Version=2.0
+NumInputs=12
+NumOutputs=5
+NumRules=18
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='CG'
+Range=[0 3]
+NumMFs=2
+MF1='L':'trimf',[0 0 3]
+MF2='H':'trimf',[0 3 3]
+
+[Input2]
+Name='CE'
+Range=[0 3]
+NumMFs=2
+MF1='L':'trimf',[0 0 3]
+MF2='H':'trimf',[0 3 3]
+
+[Input3]
+Name='LG'
+Range=[0 3]
+NumMFs=2
+MF1='L':'trimf',[0 0 3]
+MF2='H':'trimf',[0 3 3]
+
+[Input4]
+Name='LE'
+Range=[0 3]
+NumMFs=2
+MF1='L':'trimf',[0 0 3]
+MF2='H':'trimf',[0 3 3]
+
+[Input5]
+Name='CGD'
+Range=[0 10]
+NumMFs=3
+MF1='A':'trimf',[0 1 2]
+MF2='N':'trapmf',[0 0 2 6]
+MF3='F':'trapmf',[2 6 10 10]
+
+[Input6]
+Name='CGGC'
+Range=[0 1]
+NumMFs=2
+MF1='L':'trimf',[0 0 1]
+MF2='H':'trimf',[0 1 1]
+
+[Input7]
+Name='CGEC'
+Range=[0 1]
+NumMFs=2
+MF1='L':'trimf',[0 0 1]
+MF2='H':'trimf',[0 1 1]
+
+[Input8]
+Name='DOE'
+Range=[0 8]
+NumMFs=3
+MF1='A':'trimf',[0 1 2]
+MF2='N':'trapmf',[0 0 2 7]
+MF3='F':'trapmf',[2 7 8 8]
+
+[Input9]
+Name='EC'
+Range=[0 8]
+NumMFs=2
+MF1='L':'trimf',[0 0 8]
+MF2='H':'trimf',[0 8 8]
+
+[Input10]
+Name='ODHE'
+Range=[0 8]
+NumMFs=3
+MF1='A':'trimf',[0 1 2]
+MF2='N':'trapmf',[0 0 2 7]
+MF3='F':'trapmf',[2 7 8 8]
+
+[Input11]
+Name='DHE'
+Range=[0 10]
+NumMFs=3
+MF1='A':'trimf',[0 1 2]
+MF2='N':'trapmf',[0 0 2 4]
+MF3='F':'trapmf',[2 4 10 10]
+
+[Input12]
+Name='OTDHE'
+Range=[0 8]
+NumMFs=3
+MF1='A':'trimf',[0 1 2]
+MF2='N':'trapmf',[0 0 2 7]
+MF3='F':'trapmf',[2 7 8 8]
+
+[Output1]
+Name='CAP'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[0 0 1]
+MF2='M':'trimf',[0.1 0.5 0.9]
+MF3='H':'trimf',[0.6 1 1]
+
+[Output2]
+Name='BLOCK'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[0 0 1]
+MF2='M':'trimf',[0.1 0.5 0.9]
+MF3='H':'trimf',[0.6 1 1]
+
+[Output3]
+Name='EXIT'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[0 0 1]
+MF2='M':'trimf',[0.1 0.5 0.9]
+MF3='H':'trimf',[0.6 1 1]
+
+[Output4]
+Name='ESCAPE'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[0 0 1]
+MF2='M':'trimf',[0.1 0.5 0.9]
+MF3='H':'trimf',[0.6 1 1]
+
+[Output5]
+Name='TEMPT'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[0 0 1]
+MF2='M':'trimf',[0.1 0.5 0.9]
+MF3='H':'trimf',[0.6 1 1]
+
+[Rules]
+0 2 0 0 0 0 0 0 0 0 0 0, 1 0 0 0 0 (1) : 1
+0 0 0 0 0 0 2 0 0 0 0 0, 1 0 0 0 0 (1) : 1
+0 1 0 0 2 -1 0 0 0 0 0 0, 2 0 0 0 0 (1) : 1
+0 1 0 0 1 2 0 0 0 0 0 0, 3 0 0 0 0 (1) : 1
+0 0 0 0 0 0 0 0 0 3 0 0, 0 1 0 0 0 (1) : 1
+0 0 0 0 0 0 0 0 0 2 2 1, 0 3 0 0 0 (1) : 1
+0 0 0 0 0 0 0 0 0 2 2 2, 0 1 0 0 0 (1) : 1
+0 0 0 0 0 0 0 0 0 2 2 3, 0 1 0 0 0 (1) : 1
+0 0 0 0 0 0 0 0 2 0 0 0, 0 0 1 0 0 (1) : 1
+1 2 0 0 0 0 0 0 0 0 0 0, 0 0 2 0 0 (1) : 1
+0 0 1 0 0 0 0 2 1 0 0 0, 0 0 2 0 0 (1) : 1
+0 0 0 0 0 0 0 1 0 0 0 0, 0 0 3 0 0 (1) : 1
+0 0 1 0 3 0 0 0 0 0 0 0, 0 0 0 1 0 (1) : 1
+0 0 0 0 2 0 0 0 0 0 0 0, 0 0 0 2 0 (1) : 1
+0 0 2 0 1 0 0 0 0 0 0 0, 0 0 0 3 0 (1) : 1
+0 0 0 1 3 0 0 0 0 0 0 0, 0 0 0 0 2 (1) : 1
+0 0 0 2 1 0 0 0 0 0 0 0, 0 0 0 0 3 (1) : 1
+0 0 0 2 0 0 0 0 0 0 0 0, 0 0 0 0 2 (1) : 1
