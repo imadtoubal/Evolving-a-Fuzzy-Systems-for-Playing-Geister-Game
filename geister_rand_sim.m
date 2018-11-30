@@ -1,7 +1,10 @@
 clear all;
+% Reading FIS
+fis = readfis('geister_fis.fis');
 
 % Whether or not to draw the board
 draw = true;
+
 
 victoryType = zeros(1,6);
 % 1: No more self good ghosts. Opponent wins.
@@ -120,6 +123,23 @@ for trial = 1:games
             inds = find(board==3 | board==4);
         end
         valid = false;
+        output = zeros(36,5);
+        cg = CG(board, turn);
+        ce = CE(board, turn);
+        lg = LG(board, turn);
+        le = LE(board, turn);
+        cgd = CGD(board, turn);
+        cggc = CGGC();
+        cgec = CGEC();
+        doe = DOE(board, turn);
+        ec = EC(board, turn);
+        odhe = ODHE(board, turn);
+        dhe = DHE(board, turn);
+        otdhe = OTDHE(board, turn);
+        for i = 1:36
+            inputs = [min(cg, 3), min(ce, 3), min(lg, 3), min(le, 3), cgd(i), cggc, cgec, doe(i), ec(i), odhe, dhe(i), otdhe(i)]
+            output(i,:) = evalfis(fis, inputs);
+        end
         % Only if an action was taken (i.e. a player makes a valid move),
         % the variable valid changes to true. Else, we pick another ghost
         % and another move. Repeat until valid is true.
