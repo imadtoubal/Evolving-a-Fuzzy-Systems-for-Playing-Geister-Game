@@ -1,3 +1,4 @@
+% Closest Ghost Distance
 function y = CGD(board, turn)
     y = ones(6,6) * 100;
     for ghost_ind = 1:36
