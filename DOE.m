@@ -26,6 +26,4 @@ function y = DOE(board, turn)
             y(ghost_ind) = abs(row - g_row) + abs(col - g_col);
         end
     end
-    y = y(:);
-    y = min(y);
 end
