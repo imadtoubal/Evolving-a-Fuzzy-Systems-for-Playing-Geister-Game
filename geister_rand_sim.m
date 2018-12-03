@@ -136,8 +136,8 @@ for trial = 1:games
         otdhe = OTDHE(board, turn);
         for i = 1:36
             if sum(inds == i) > 0
-                cggc = CGGC();
-                cgec = CGEC();
+                cggc = CGGC(board, turn);
+                cgec = CGEC(board, turn);
                 inputs = [min(cg, 3), min(ce, 3), min(lg, 3), min(le, 3), ...
                     cgd(i), cggc, cgec, doe(i), ec(i), odhe, dhe(i), otdhe(i)];
                 output(i,:) = evalfis(fis, inputs);
