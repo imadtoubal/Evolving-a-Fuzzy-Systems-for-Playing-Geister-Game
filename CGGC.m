@@ -1,6 +1,6 @@
 function y = CGGC(board, turn)
     b = board(:);
-    if mod(turn) == 0
+    if mod(turn, 2) == 0
         eg = sum(b == 3);
         ag = eg + sum(b == 4);
     else
