@@ -129,16 +129,21 @@ for trial = 1:games
         lg = LG(board, turn);
         le = LE(board, turn);
         cgd = CGD(board, turn);
-        cggc = CGGC();
-        cgec = CGEC();
         doe = DOE(board, turn);
         ec = EC(board, turn);
         odhe = ODHE(board, turn);
         dhe = DHE(board, turn);
         otdhe = OTDHE(board, turn);
         for i = 1:36
-            inputs = [min(cg, 3), min(ce, 3), min(lg, 3), min(le, 3), cgd(i), cggc, cgec, doe(i), ec(i), odhe, dhe(i), otdhe(i)]
-            output(i,:) = evalfis(fis, inputs);
+            if sum(inds == i) > 0
+                cggc = CGGC();
+                cgec = CGEC();
+                inputs = [min(cg, 3), min(ce, 3), min(lg, 3), min(le, 3), ...
+                    cgd(i), cggc, cgec, doe(i), ec(i), odhe, dhe(i), otdhe(i)];
+                output(i,:) = evalfis(fis, inputs);
+            else
+                output(i,:) = zeros(1,5);
+            end
         end
         % Only if an action was taken (i.e. a player makes a valid move),
         % the variable valid changes to true. Else, we pick another ghost
