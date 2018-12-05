@@ -3,7 +3,7 @@ clear all;
 fis = readfis('geister_fis.fis');
 
 % Whether or not to draw the board
-draw = true;
+draw = false;
 
 
 victoryType = zeros(1,6);
@@ -15,7 +15,7 @@ victoryType = zeros(1,6);
 % 6: Opponent good ghost moved off the board. Opponent wins.
 
 % How many games to play
-games = 1;
+games = 100;
 
 for trial = 1:games
 
@@ -129,6 +129,7 @@ for trial = 1:games
         lg = LG(board, turn);
         le = LE(board, turn);
         cgd = CGD(board, turn);
+        cgi = CGI(board, turn);
         doe = DOE(board, turn);
         ec = EC(board, turn);
         odhe = ODHE(board, turn);
@@ -154,9 +155,17 @@ for trial = 1:games
             % ind: the index of the player's piece to move next
             % dir: the direction in which the piece moves 
             % 1: up, 2: down, 3: left, 4: right
-            ind = inds(randi(length(inds)));
-            [row, col] = ind2sub(size(board), ind);
-            dir = randi(4);
+            if(mod(player, 2) == 0) 
+                ind = inds(randi(length(inds)));
+                [row, col] = ind2sub(size(board), ind);
+                dir = randi(4);
+            else 
+                [values, indeces] = max(output);
+                [best_value, best_index] = max(values);
+                ind = indeces(best_index);
+                [row, col] = ind2sub(size(board), ind);
+                dir = action(board, turn, ind, best_index);
+            end 
             if dir == 1
                 % Move up      
                 if row > 1

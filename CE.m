@@ -5,6 +5,5 @@ function y = CE(captured, turn)
     else
         y = sum(c == 2);
     end
-    
 end
 
