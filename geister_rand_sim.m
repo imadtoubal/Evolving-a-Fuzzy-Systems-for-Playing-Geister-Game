@@ -1,4 +1,5 @@
 clear all;
+warning('off', 'all')
 % Reading FIS
 fis = readfis('geister_fis.fis');
 
@@ -155,7 +156,7 @@ for trial = 1:games
             % ind: the index of the player's piece to move next
             % dir: the direction in which the piece moves 
             % 1: up, 2: down, 3: left, 4: right
-            if(mod(player, 2) == 0) 
+            if(mod(turn, 2) == 1) 
                 ind = inds(randi(length(inds)));
                 [row, col] = ind2sub(size(board), ind);
                 dir = randi(4);
@@ -165,6 +166,7 @@ for trial = 1:games
                 ind = indeces(best_index);
                 [row, col] = ind2sub(size(board), ind);
                 dir = action(board, turn, ind, best_index);
+                output(ind, best_index) = 0;
             end 
             if dir == 1
                 % Move up      

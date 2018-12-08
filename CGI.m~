@@ -19,7 +19,7 @@ function y = CGD(board, turn)
                     [row, col] = ind2sub(size(board), i);
                     d = abs(row-g_row) + abs(col-g_col);
                     if(d < y(ghost_ind))
-                        y(ghost_ind) = i;
+                        y(ghost_ind) = d;
                     end
                 end
             end
