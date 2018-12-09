@@ -1,3 +1,4 @@
+clear all;
 % START
 popsize = 20;
 mutation = .3;
@@ -9,8 +10,8 @@ gen = 0;
 population = normrnd(1, .1, [popsize d]);
 % Compute fitness
 fitness = ones(popsize, 1);
-for i = 1:population
-    fitness(i) = fitnessFunc(population);
+for i = 1:popsize
+    fitness(i) = fitnessFunc(population(i));
 end
 convergence = false;
 % REPEAT
@@ -35,8 +36,8 @@ while ~convergence
     end
 	population = newpop;
     % Compute fitness
-    for i = 1:population
-        fitness(i) = fitnessFunc(population);
+    for i = 1:popsize
+        fitness(i) = fitnessFunc(population(i));
     end
     best_fitness = min(fitness);
     gen = gen + 1;

@@ -1,5 +1,5 @@
 function f = fitnessFunc(chromosome)
-    warning('off', 'all')
+    warning('off', 'all');
     % Reading FIS
     fis = readfis('geister_fis.fis');
 
