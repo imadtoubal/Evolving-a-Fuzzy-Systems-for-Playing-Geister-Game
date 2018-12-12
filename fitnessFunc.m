@@ -142,7 +142,7 @@ function f = fitnessFunc(chromosome)
                     cgec = CGEC(board, turn);
                     inputs = [min(cg, 3), min(ce, 3), min(lg, 3), min(le, 3), ...
                         cgd(i), cggc, cgec, doe(i), ec(i), odhe, dhe(i), otdhe(i)];
-                    output(i,:) = evalfis(fis, inputs) .* chromosome;
+                    output(i,:) = evalfis(fis, inputs);
                 else
                     output(i,:) = zeros(1,5);
                 end
@@ -157,10 +157,14 @@ function f = fitnessFunc(chromosome)
                 % dir: the direction in which the piece moves 
                 % 1: up, 2: down, 3: left, 4: right
                 if(mod(turn, 2) == 1) 
-                    ind = inds(randi(length(inds)));
+                    [values, indeces] = max(output);
+                    [best_value, best_index] = max(values);
+                    ind = indeces(best_index);
                     [row, col] = ind2sub(size(board), ind);
-                    dir = randi(4);
-                else 
+                    dir = action(board, turn, ind, best_index);
+                    output(ind, best_index) = 0;
+                else
+                    output = output .* chromosome;
                     [values, indeces] = max(output);
                     [best_value, best_index] = max(values);
                     ind = indeces(best_index);
