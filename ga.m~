@@ -1,7 +1,7 @@
 clear all;
 % START
-popsize = 50;
-mutation = .1;
+popsize = 20;
+mutation = .3;
 parents = 5;
 d = 5;
 generations = 30;

@@ -16,7 +16,7 @@ function f = fitnessFunc(chromosome)
     % 6: Opponent good ghost moved off the board. Opponent wins.
 
     % How many games to play
-    games = 100;
+    games = 1000;
 
     for trial = 1:games
 
